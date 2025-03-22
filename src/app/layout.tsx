@@ -1,25 +1,11 @@
-"use client";
-import { useEffect, useState } from "react";
+import "./globals.css";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [styles, setStyles] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchStyles() {
-      const res = await fetch("/api/styles");
-      const cssFiles = await res.json();
-      setStyles(cssFiles);
-    }
-    fetchStyles();
-  }, []);
-
+export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <head>
-        {/* Cargar estilos dinámicos */}
-        {styles.map((href, index) => (
-          <link key={index} rel="stylesheet" href={href} />
-        ))}
+        {/* Cargar los estilos de WordPress */}
+        <link rel="stylesheet" href="https://server.eruditus.group/wp-content/themes/tu-tema/style.css" />
       </head>
       <body>{children}</body>
     </html>
